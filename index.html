@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Mood Explorer</title>
+    <link rel="stylesheet" href="CSS/style.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Music Mood Explorer</h1>
+            <p class="subtitle">Exploring 19,000+ songs through Spotify audio features</p>
+        </header>
+
+        <div class="controls">
+            <div class="control-group">
+                <label>X-Axis</label>
+                <select id="x-select">
+                    <option value="energy">Energy</option>
+                    <option value="valence">Valence (Happiness)</option>
+                    <option value="danceability">Danceability</option>
+                    <option value="acousticness">Acousticness</option>
+                    <option value="speechiness">Speechiness</option>
+                    <option value="tempo">Tempo (BPM)</option>
+                </select>
+            </div>
+            
+            <div class="control-group">
+                <label>Y-Axis</label>
+                <select id="y-select">
+                    <option value="valence">Valence (Happiness)</option>
+                    <option value="energy">Energy</option>
+                    <option value="danceability">Danceability</option>
+                    <option value="acousticness">Acousticness</option>
+                    <option value="speechiness">Speechiness</option>
+                    <option value="tempo">Tempo (BPM)</option>
+                </select>
+            </div>
+
+            <div class="control-group">
+                <label>Sample Size</label>
+                <input type="range" id="sample-slider" min="1000" max="10000" step="1000" value="5000">
+                <span class="sample-value"><span id="sample-value">5000</span> songs</span>
+            </div>
+        </div>
+
+        <div class="viz-container">
+            <div id="loading" class="loading">Loading dataset...</div>
+            <div id="chart"></div>
+            
+            <div class="legend" id="legend" style="display: none;">
+                <span class="legend-title">Popularity</span>
+                <div>
+                    <div class="legend-gradient"></div>
+                    <div class="legend-labels">
+                        <span>Low (0)</span>
+                        <span>High (100)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="stats" id="stats" style="display: none;">
+            <div class="stat-card">
+                <div class="stat-label">Songs</div>
+                <div class="stat-value" id="songCount">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Energy</div>
+                <div class="stat-value" id="avgEnergy">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Happiness</div>
+                <div class="stat-value" id="avgValence">-</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">Danceability</div>
+                <div class="stat-value" id="avgDance">-</div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Data: Spotify Web API (19,043 tracks) | CSC316 Assignment 4 | Built with D3.js</p>
+        </footer>
+    </div>
+
+    <div class="tooltip" id="tooltip"></div>
+    <script src="js/script.js"></script>
+</body>
+</html>
