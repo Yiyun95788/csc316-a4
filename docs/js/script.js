@@ -6,18 +6,52 @@ Papa.parse('dataset/subset.csv', {
     header: true,
     dynamicTyping: true,
     skipEmptyLines: true,
-    complete: function(results) {
-        data = results.data.filter(d => 
-            d.energy != null && 
-            d.valence != null && 
+    complete: function (results) {
+        data = results.data.filter(d =>
+            d.energy != null &&
+            d.valence != null &&
             d.popularity != null
         );
+
+        const slider  = document.getElementById('sample-slider');
+        const valueEl = document.getElementById('sample-value');
+        const total   = data.length;
+        const step    = +slider.step || 1;
+
+        const baseMaxCandidate = total - (total % step);
+        const baseMax = (baseMaxCandidate === total) ? (total - step) : baseMaxCandidate;
+
+        slider.max = baseMax + step;
+        slider.value = baseMax;
+
+        function mapToSample(v) {
+            return (v > baseMax) ? total : v;
+        }
+
+        function refresh() {
+            const raw = +slider.value;
+            const n   = mapToSample(raw);
+
+            valueEl.textContent = n.toLocaleString();
+
+            if (typeof updateChart === 'function' && updateChart.length >= 1) {
+                updateChart(n);
+            } else {
+                window.__mappedN = n;
+                updateChart();
+            }
+        }
+
+        slider.addEventListener('input', refresh);
+
         document.getElementById('loading').style.display = 'none';
-        document.getElementById('legend').style.display = 'flex';
-        document.getElementById('stats').style.display = 'grid';
-        updateChart();
+        document.getElementById('legend').style.display  = 'flex';
+        document.getElementById('stats').style.display   = 'grid';
+
+        refresh();
     }
 });
+
 
 const margin = {top: 30, right: 40, bottom: 70, left: 80};
 const width = Math.min(1100, window.innerWidth - 100) - margin.left - margin.right;
