@@ -22,7 +22,7 @@ Papa.parse('dataset/subset.csv', {
         const baseMax = (baseMaxCandidate === total) ? (total - step) : baseMaxCandidate;
 
         slider.max = baseMax + step;
-        slider.value = baseMax;
+        slider.value = 3000;
 
         function mapToSample(v) {
             return (v > baseMax) ? total : v;
