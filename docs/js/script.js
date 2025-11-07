@@ -212,3 +212,22 @@ document.getElementById('sample-slider').addEventListener('input', function() {
     document.getElementById('sample-value').textContent = this.value;
 });
 document.getElementById('sample-slider').addEventListener('change', updateChart);
+
+const sampleInfo = document.getElementById('sample-info');
+const sampleTooltip = document.getElementById('sample-tooltip');
+
+sampleInfo.addEventListener('mouseenter', function(e) {
+    sampleTooltip.classList.add('show');
+    positionTooltip(e);
+});
+
+sampleInfo.addEventListener('mousemove', positionTooltip);
+
+sampleInfo.addEventListener('mouseleave', function() {
+    sampleTooltip.classList.remove('show');
+});
+
+function positionTooltip(e) {
+    sampleTooltip.style.left = (e.pageX + 10) + 'px';
+    sampleTooltip.style.top = (e.pageY - 30) + 'px';
+}

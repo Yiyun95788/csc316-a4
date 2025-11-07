@@ -46,10 +46,44 @@
             </div>
 
             <div class="control-group">
-                <label>Sample Size</label>
+                <label>Sample Size <span class="info-icon" id="sample-info">?</span></label>
                 <input type="range" id="sample-slider" min="1000" max="10000" step="1000" value="3000">
                 <span class="sample-value"><span id="sample-value">3000</span> songs</span>
             </div>
+        </div>
+
+        <div class="terminology-section">
+            <h2>Understanding the Features</h2>
+            <div class="terminology-grid">
+                <div class="term-card">
+                    <h3>Energy</h3>
+                    <p>Intensity and activity level. High energy tracks feel fast, loud, and noisy.</p>
+                </div>
+                <div class="term-card">
+                    <h3>Valence</h3>
+                    <p>Musical positivity. High valence sounds happy and cheerful, low valence sounds sad or angry.</p>
+                </div>
+                <div class="term-card">
+                    <h3>Danceability</h3>
+                    <p>How suitable a track is for dancing based on tempo, rhythm stability, and beat strength.</p>
+                </div>
+                <div class="term-card">
+                    <h3>Acousticness</h3>
+                    <p>Confidence measure of whether the track is acoustic. Higher values indicate more acoustic instruments.</p>
+                </div>
+                <div class="term-card">
+                    <h3>Speechiness</h3>
+                    <p>Presence of spoken words. Values above 0.66 are likely spoken word content like podcasts.</p>
+                </div>
+                <div class="term-card">
+                    <h3>Tempo</h3>
+                    <p>Overall pace of the track in beats per minute (BPM). Average tempo is around 120 BPM.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="info-tooltip" id="sample-tooltip">
+            Default set to 3,000 songs to reduce load time
         </div>
 
         <div class="viz-container">
@@ -84,6 +118,28 @@
             <div class="stat-card">
                 <div class="stat-label">Danceability</div>
                 <div class="stat-value" id="avgDance">-</div>
+            </div>
+        </div>
+
+        <div class="insights-section">
+            <h2>Key Insights from the Dataset</h2>
+            <div class="insights-grid">
+                <div class="insight-card">
+                    <h3>The Happy-Energetic Correlation</h3>
+                    <p>Songs with high energy tend to have higher valence. Energetic music is often uplifting and positive.</p>
+                </div>
+                <div class="insight-card">
+                    <h3>Danceability Sweet Spot</h3>
+                    <p>Most danceable tracks cluster around moderate energy levels (0.5-0.8) rather than extreme highs.</p>
+                </div>
+                <div class="insight-card">
+                    <h3>Acoustic vs. Electric</h3>
+                    <p>Acoustic tracks typically have lower energy and danceability compared to electronic productions.</p>
+                </div>
+                <div class="insight-card">
+                    <h3>Popularity Patterns</h3>
+                    <p>Popular songs span all mood quadrants, but tend to cluster in the moderate-to-high energy range.</p>
+                </div>
             </div>
         </div>
 

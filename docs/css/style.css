@@ -82,6 +82,10 @@ h1 {
     border: 2px solid #000;
 }
 
+.control-group {
+    position: relative;
+}
+
 .control-group label {
     display: block;
     font-size: 0.9em;
@@ -266,4 +270,125 @@ circle {
     .stats { grid-template-columns: 1fr; }
     .stat-card { border-right: none; border-bottom: 2px solid #000; }
     .stat-card:last-child { border-bottom: none; }
+}
+
+.info-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border: 1.5px solid #000;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 5px;
+    cursor: help;
+    vertical-align: middle;
+}
+
+.info-tooltip {
+    position: fixed;
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px 12px;
+    font-size: 13px;
+    border-radius: 4px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    white-space: nowrap;
+    z-index: 1000;
+}
+
+.info-tooltip.show {
+    opacity: 1;
+}
+
+.terminology-section {
+    margin-bottom: 40px;
+    padding: 30px;
+    border: 2px solid #000;
+}
+
+.terminology-section h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.terminology-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.term-card {
+    padding: 20px;
+    border: 2px solid #000;
+    background: #fff;
+}
+
+.term-card h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.term-card p {
+    font-size: 0.9em;
+    line-height: 1.5;
+    color: #333;
+}
+
+.insights-section {
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 30px;
+    border: 2px solid #000;
+}
+
+.insights-section h2 {
+    font-size: 1.5em;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.insight-card {
+    padding: 25px;
+    border: 2px solid #000;
+    background: #fff;
+}
+
+.insight-card h3 {
+    font-size: 1.1em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.insight-card p {
+    font-size: 0.95em;
+    line-height: 1.6;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .terminology-grid { grid-template-columns: 1fr; }
+    .insights-grid { grid-template-columns: 1fr; }
 }
