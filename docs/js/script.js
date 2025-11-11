@@ -231,3 +231,31 @@ function positionTooltip(e) {
     sampleTooltip.style.left = (e.pageX + 10) + 'px';
     sampleTooltip.style.top = (e.pageY - 30) + 'px';
 }
+
+// ====== Hover glow follows cursor on cards ======
+(function attachCardHover() {
+    const cards = document.querySelectorAll('.term-card, .insight-card');
+    if (!cards.length) return;
+
+    cards.forEach(card => {
+        if (!card.hasAttribute('tabindex')) {
+            card.setAttribute('tabindex', '0');
+        }
+
+        const setMouseVars = (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mx', `${x}px`);
+            card.style.setProperty('--my', `${y}px`);
+        };
+
+        card.addEventListener('mousemove', setMouseVars);
+        card.addEventListener('mouseenter', (e) => setMouseVars(e));
+        card.addEventListener('mouseleave', () => {
+
+            card.style.removeProperty('--mx');
+            card.style.removeProperty('--my');
+        });
+    });
+})();
