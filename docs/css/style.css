@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Audiowide&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -62,10 +64,17 @@ header h1, header .subtitle { position: relative; z-index: 2; }
 
 
 h1 {
-    font-size: 3.5em;
+    font-family: 'Audiowide', 'Poppins', sans-serif;
+    font-size: 3.8em;
     font-weight: 700;
     margin-bottom: 10px;
     letter-spacing: -1px;
+    text-shadow:
+            -1px -1px 0 #1DB954,
+            1px -1px 0 #1DB954,
+            -1px  1px 0 #1DB954,
+            1px  1px 0 #1DB954;
+    margin-bottom: 10px;
 }
 
 .subtitle {
@@ -231,6 +240,13 @@ select:focus {
     border-right: none;
 }
 
+.stat-card:hover .stat-value {
+    transform: scale(1.05);
+    text-shadow:
+            0 0 6px #1DB954,
+            0 0 10px #1DB954;
+}
+
 .stat-label {
     font-size: 0.85em;
     font-weight: 600;
@@ -240,8 +256,17 @@ select:focus {
 }
 
 .stat-value {
-    font-size: 2.5em;
+    font-family: 'Audiowide', 'Poppins', sans-serif;
+    font-size: 2.8em;
     font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow:
+            -1px -1px 0 #1DB954,
+            1px -1px 0 #1DB954,
+            -1px  1px 0 #1DB954,
+            1px  1px 0 #1DB954;
+    margin-top: 8px;
+    transition: transform 0.25s ease, text-shadow 0.25s ease;
 }
 
 footer {
@@ -318,6 +343,11 @@ circle {
     letter-spacing: 0.5px;
     margin-bottom: 25px;
     text-align: center;
+    text-shadow:
+            -1px -1px 0 #1DB954,
+            1px -1px 0 #1DB954,
+            -1px  1px 0 #1DB954,
+            1px  1px 0 #1DB954;
 }
 
 .terminology-grid {
@@ -360,6 +390,11 @@ circle {
     letter-spacing: 0.5px;
     margin-bottom: 25px;
     text-align: center;
+    text-shadow:
+            -1px -1px 0 #1DB954,
+            1px -1px 0 #1DB954,
+            -1px  1px 0 #1DB954,
+            1px  1px 0 #1DB954;
 }
 
 .insights-grid {
@@ -391,4 +426,88 @@ circle {
 @media (max-width: 768px) {
     .terminology-grid { grid-template-columns: 1fr; }
     .insights-grid { grid-template-columns: 1fr; }
+}
+
+:root{
+    --accent: #1DB954;
+    --ink:    #000;
+    --card-bg:#fff;
+}
+
+.term-card, .insight-card{
+    position: relative;
+    background: var(--card-bg);
+    border: 2px solid var(--ink);
+    transition:
+            transform .22s ease,
+            box-shadow .22s ease,
+            border-color .22s ease,
+            background-color .22s ease;
+    will-change: transform, box-shadow, border-color;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.term-card::after,
+.insight-card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    pointer-events:none;
+    background:
+            radial-gradient(550px circle at var(--mx,50%) var(--my,50%),
+            rgba(29,185,84, .12),
+            transparent 40%);
+    opacity:0;
+    transition: opacity .25s ease;
+}
+
+.term-card::before,
+.insight-card::before{
+    content:"";
+    position:absolute;
+    left:0; top:0; height:4px; width:0%;
+    background: linear-gradient(90deg, var(--accent), #34c97d);
+    transition: width .24s ease;
+}
+
+.term-card:hover,
+.term-card:focus-within,
+.insight-card:hover,
+.insight-card:focus-within{
+    transform: translateY(-4px);
+    border-color: var(--accent);
+    box-shadow:
+            0 10px 24px rgba(0,0,0,.12),
+            0 0 0 3px rgba(29,185,84,.20) inset;
+}
+
+.term-card:hover::after,
+.term-card:focus-within::after,
+.insight-card:hover::after,
+.insight-card:focus-within::after{
+    opacity:1;
+}
+
+.term-card:hover::before,
+.term-card:focus-within::before,
+.insight-card:hover::before,
+.insight-card:focus-within::before{
+    width:100%;
+}
+
+.term-card:focus-visible,
+.insight-card:focus-visible{
+    outline: 3px solid var(--accent);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce){
+    .term-card, .insight-card{
+        transition: border-color .2s ease, background-color .2s ease, box-shadow .2s ease;
+    }
+    .term-card:hover, .term-card:focus-within,
+    .insight-card:hover, .insight-card:focus-within{
+        transform:none;
+    }
 }
